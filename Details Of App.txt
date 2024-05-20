@@ -1,0 +1,16 @@
+Project: Personal Task Manager
+
+• Description:-
+Create a web application that allows users to manage their tasks. Users should be able to register, log in, add tasks, mark tasks as completed, and delete tasks. The application should have both frontend and backend components.
+
+• Features :-
+ 1. Login And Sign Up
+ 2. Add task , Mark Task(completed),Delete Tasks
+• Needs :- 
+ Basic MongoDB (And at last MongoDb atlas), JWT Authentication , API in express                                  and some CRUD operations , Tailwind , Loader .   
+• Additional Fetures :- 
+ 1.Task Categorize (Example : work , personal , shopping)
+ 2.Allow user to change password , update email
+ 3.Share Task with another users
+
+• Design :- https://www.figma.com/file/y08b1cqvoVJnSc90YJX6xV/Task-manager-Mobile-app-Ui-(Community)?type=design&node-id=10-279&mode=design&t=80yRhTFd8Zy48SRG-0 
