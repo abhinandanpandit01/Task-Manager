@@ -215,8 +215,10 @@ server.get("/tasks", (req, res) =>
         }
         try
         {
-            const AllTasks = await Task.find({ UserName: user.Name });
-            res.json(AllTasks);
+            const userTasks = await Task.find({ UserName: user.Name });
+            const sharedTasks = await Task.find({ UserName: user.ShareUserName });
+            const allTasks = [...userTasks, ...sharedTasks];
+            res.json(allTasks);
         } catch (err)
         {
             console.error("Error retrieving tasks:", err);
@@ -274,19 +276,30 @@ server.patch('/tasks/Edittask', async (req, res) =>
     }
 });
 
-server.post('/tasks/share',async(req,res)=>{
-    const {Title,Description,SharedUser} = req.body
+server.post('/tasks/share', async (req, res) =>
+{
+    const { Title, Description, ShareUser } = req.body;
 
-    if(!Title && !Description){
-        res.json({status:"All fields are required"})
+    if (!Title || !Description || !ShareUser)
+    {
+        return res.status(400).json({ status: "All fields are required" });
     }
-    const sharedTask = await Note.create({
-        Title:Title,
-        Description:Description,
-        SharedUser:SharedUser
-    })
-    res.json({status:"Data Send Successfully"},sharedTask)
-})
+
+    try
+    {
+        const sharedTask = await Task.create({
+            ShareUserName: ShareUser,
+            Title: Title,
+            Description: Description,
+        });
+        res.json({ status: "Data Send Successfully", sharedTask });
+    } catch (err)
+    {
+        console.error("Error sharing task:", err);
+        res.status(500).json({ error: "Server Error", details: err });
+    }
+});
+
 // Server 
 async function main()
 {

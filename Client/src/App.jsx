@@ -15,8 +15,8 @@ function App() {
   return (
     <UserContextProvider>
       <NoteContextProvider>
-        <div className="w-screen h-screen bg-gradient-to-r from-violet-500 to-fuchsia-500">
-          <Navbar />
+        <div className="w-screen h-screen bg-gradient-to-r from-violet-500 to-fuchsia-500" >
+          <Navbar/>
           <Routes>
             <Route path="/home" element={<HomePage />} />
             <Route path="/UserProfile" element={<UserProfile />} />

@@ -20,7 +20,6 @@ export default function EditNote() {
       });
     }
   }, []);
-  // console.log({ Title, Description });
   const handleBack = () => {
     setLoading(true);
     setTimeout(() => {

@@ -70,11 +70,6 @@ export default function UserProfile() {
         localStorage.removeItem("token");
         const token = res.data.token;
         localStorage.setItem("token", token);
-        // setTimeout(async () => {
-        //   await axios.post("/logout");
-        //   localStorage.removeItem("token");
-        //   navigate("/");
-        // }, 1000);
       })
       .catch((err) => console.log(err));
   };

@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 import { FaShare } from "react-icons/fa";
 
-export default function Notetile({ Title, id, Description , ShareFunction}) {
+export default function Notetile({ Title, id, Description, ShareFunction }) {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [showDescription, setShowDescription] = useState(false);
@@ -44,7 +44,7 @@ export default function Notetile({ Title, id, Description , ShareFunction}) {
     }
   };
   const handleShare = () => {
-    ShareFunction()
+    ShareFunction();
   };
   return (
     <div className="w-full min-h-[8rem] bg-white/30 rounded-xl flex items-center justify-center px-2 backdrop-blur-sm] relative flex-col gap-3 py-2">
@@ -80,7 +80,7 @@ export default function Notetile({ Title, id, Description , ShareFunction}) {
             color="red"
             onClick={() => handleDelete(id)}
           />
-            <FaShare size={"1.1em"} onClick={handleShare} />
+          <FaShare size={"1.1em"} onClick={handleShare} />
         </div>
       </div>
       {showDescription && (
