@@ -39,6 +39,9 @@ export default function HomePage() {
         setDescription("");
         setLoading(false);
         setAdd(false);
+        setTimeout(()=>{
+          location.reload()
+        },1100)
       })
       .catch((error) => {
         console.log(error);

@@ -8,7 +8,9 @@ import { enqueueSnackbar } from "notistack";
 import { Link, useNavigate } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 import { FaShare } from "react-icons/fa";
+import completedAudioSrc from "../assets/taskCompleted.mp3";
 
+const completedAudio = new Audio(completedAudioSrc);
 export default function Notetile({ Title, id, Description, ShareFunction }) {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -33,14 +35,18 @@ export default function Notetile({ Title, id, Description, ShareFunction }) {
   };
   const handleDone = async () => {
     try {
-      await axios.delete(`/tasks/delete?id=${id}`).then(() => {
-        enqueueSnackbar("Completed The Task", { variant: "success" });
-      });
+      setLoading(true);
+      await axios.delete(`/tasks/delete?id=${id}`);
+      enqueueSnackbar("Completed The Task", { variant: "success" });
+      completedAudio.play();
       setTimeout(() => {
-        location.reload();
+        window.location.reload();
       }, 1100);
     } catch (err) {
-      console.log(err);
+      console.error(err);
+      enqueueSnackbar("Error completing task", { variant: "error" });
+    } finally {
+      setLoading(false);
     }
   };
   const handleShare = () => {
